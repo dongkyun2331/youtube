@@ -15,6 +15,7 @@ const handleHome = (req, res) => {
 
 app.get("/", gossipMiddleware, handleHome);
 
-const handleListening = () => console.log(`${PORT}`);
+const handleListening = () =>
+  console.log(`Server listenting on port http://localhost:${PORT}`);
 
 app.listen(PORT, handleListening);
