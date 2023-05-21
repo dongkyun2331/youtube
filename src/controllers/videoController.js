@@ -1,7 +1,4 @@
-export const trending = (req, res) =>
-  res.send(
-    "<!DOCTYPE html><html lang='ko'><head><title>Youtube</title></head><body><h1>Home</h1><footer>&copy;2023 Youtube - All rights reserved</footer></body></html>"
-  );
+export const trending = (req, res) => res.send("home");
 export const see = (req, res) => {
   return res.send(
     `<!DOCTYPE html><html lang='ko'><head><title>Youtube</title></head><body><h1>Watch video #${req.params.id}</h1><footer>&copy;2023 Youtube - All rights reserved</footer></body></html>`
