@@ -10,7 +10,7 @@ const SearchFeed = () => {
   const { searchTerm } = useParams();
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=`).then((data) =>
+    fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) =>
       setVideos(data.items)
     );
   }, []);
@@ -29,7 +29,7 @@ const SearchFeed = () => {
       </Typography>
       <Box display="flex">
         <Box sx={{ mr: { sm: "100px" } }} />
-        {<Videos videos={videos} />}
+        {videos ? <Videos videos={videos} /> : <p>No videos found.</p>}
       </Box>
     </Box>
   );
