@@ -16,6 +16,12 @@ const VideoDetail = () => {
       setVideoDetail(data.items[0])
     );
   }, [id]);
+
+  if (!videoDetail) {
+    // 로딩 인디케이터를 렌더링하거나 여기서 null을 반환할 수 있습니다.
+    return <p>Loading...</p>;
+  }
+
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }}>
@@ -26,6 +32,9 @@ const VideoDetail = () => {
               className="react-player"
               controls
             />
+            <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
+              {videoDetail.snippet.title}
+            </Typography>
           </Box>
         </Box>
       </Stack>
