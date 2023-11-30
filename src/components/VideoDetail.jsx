@@ -57,6 +57,11 @@ const VideoDetail = () => {
                   />
                 </Typography>
               </Link>
+              <Stack>
+                <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                  {viewCount} views
+                </Typography>
+              </Stack>
             </Stack>
           </Box>
         </Box>
