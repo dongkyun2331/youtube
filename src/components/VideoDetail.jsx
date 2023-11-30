@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
-import { Video } from './'
+import { Video } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const VideoDetail = () => {
-  return <div>VideoDetail</div>;
+  return <Box minHeight="95vh"></Box>;
 };
 
 export default VideoDetail;
