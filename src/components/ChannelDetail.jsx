@@ -29,7 +29,7 @@ const ChannelDetail = () => {
 
   return (
     <Box minHeight="95vh">
-      <Box>
+      {/* <Box>
         <div
           style={{
             height: "300px",
@@ -39,7 +39,7 @@ const ChannelDetail = () => {
           }}
         />
         <ChannelCard channelDetail={channelDetail} marginTop="-93px" />
-      </Box>
+      </Box> */}
       <Box p={2} display="flex">
         <Box sx={{ mr: { sm: "100px" } }} />
         <Videos videos={videos} />

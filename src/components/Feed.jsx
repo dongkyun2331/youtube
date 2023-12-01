@@ -4,7 +4,7 @@ import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { Sidebar, Videos } from "./";
 
 const Feed = () => {
-  const [selectedCategory, setSelectedCategory] = useState("New");
+  const [selectedCategory, setSelectedCategory] = useState("라이브");
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Feed = () => {
           mb={2}
           sx={{ color: "white" }}
         >
-          {selectedCategory} <span style={{ color: "#F31503" }}>videos</span>
+          {selectedCategory} <span style={{ color: "#F31503" }}>유튜브</span>
         </Typography>
         <Videos videos={videos} />
       </Box>
