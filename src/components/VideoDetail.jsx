@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Stack, Button, Card } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
 import { Videos } from "./";
@@ -11,6 +11,9 @@ const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
+  const [showVideos, setShowVideos] = useState(true);
+  const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) =>
@@ -20,6 +23,12 @@ const VideoDetail = () => {
     fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
       (data) => setVideos(data.items)
     );
+
+    const fetchComments = async () => {
+      const response = await fetchFromAPI(`commentThreads?part=snippet&videoId=${id}`);
+      setComments(response.items);
+    };
+    fetchComments();
   }, [id]);
 
   if (!videoDetail?.snippet)
@@ -74,13 +83,31 @@ const VideoDetail = () => {
           </Box>
         </Box>
         <Box
-          px={2}
-          py={{ md: 1, xs: 5 }}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Videos videos={videos} direction="column" />
-        </Box>
+        px={2}
+        py={{ md: 1, xs: 5 }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button onClick={() => { setShowVideos(true); setShowComments(false); }}>
+          Show Videos
+        </Button>
+        <Button onClick={() => { setShowVideos(false); setShowComments(true); }}>
+          Show Video Comments
+        </Button>
+        {showVideos && <Videos videos={videos} direction="column" />}
+        {showComments && (
+          <Card sx={{ backgroundColor: "#000" }}>
+         <Box sx={{width: { xs: "100%", sm: "358px", md: "320px" }}}>
+            {comments.map((comment) => (
+              <Box key={comment.id}>
+                {/* 댓글을 표시하는 UI */}
+                <Typography sx={{  color: "#fff" }}>{comment.snippet.topLevelComment.snippet.textDisplay}</Typography>
+              </Box>
+            ))}
+          </Box>
+          </Card>
+        )}
+      </Box>
       </Stack>
     </Box>
   );
